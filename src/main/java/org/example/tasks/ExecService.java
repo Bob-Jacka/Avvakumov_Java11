@@ -3,6 +3,8 @@ package org.example.tasks;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Math.round;
+
 public abstract class ExecService {
 
     public static void execTasks(final String[] args) {
@@ -13,16 +15,16 @@ public abstract class ExecService {
 
         } else if (size == 1) {
             if (isNumeric(args[0])) {
-                FirstTask.getHello(Double.parseDouble(args[0]));
+                FirstTask.getHello(Float.parseFloat(args[0]));
             } else {
                 SecondTask.getName(args[0]);
             }
 
         } else if (size >= 2) {
-            List<Double> list = new ArrayList<>(size);
+            List<Float> list = new ArrayList<>(size);
             for (String i : args) {
                 if (isNumeric(i)) {
-                    list.add(Double.parseDouble(i));
+                    list.add((float) round(Float.parseFloat(i)));
                 }
             }
             ThirdTask.getNumbers(list);
@@ -32,7 +34,7 @@ public abstract class ExecService {
     private static boolean isNumeric(String str) {
         try {
             if (str.contains(".")) {
-                Double.parseDouble(str);
+                Float.parseFloat(str);
             } else {
                 Integer.parseInt(str);
             }
